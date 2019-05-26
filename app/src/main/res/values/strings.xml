@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">MoneyTracker</string>
+    <string name="registration_error">Neuspješna registracija</string>
+    <string name="login_error">Neuspješna prijava</string>
+    <string name="price">Iznos*</string>
+    <string name="payer_info">Informacije o platitelju*</string>
+    <string name="recipient_info">Informacije o primatelju*</string>
+    <string name="iban">IBAN</string>
+    <string name="model">Model (npr. HR80)</string>
+    <string name="reference_number">Referentni broj</string>
+    <string name="purpose_code">Šifra namjene plaćanja</string>
+    <string name="description">Opis plaćanja*</string>
+    <string name="save">Spremi</string>
+    <string name="pick_month">Odaberite mjesec:</string>
+    <string name="pick_bill_type">Odaberite vrstu računa:</string>
+    <string name="login">Prijavi se</string>
+    <string name="register">Registriraj se</string>
+    <string name="logout">Odjavi se</string>
+    <string name="scan_bill">Skeniraj račun</string>
+    <string name="add_new_bill">Dodaj novi račun</string>
+    <string name="show_bill_history">Povijest računa</string>
 </resources>

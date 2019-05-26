@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-//                                    firebaseDatabase.getReference().child(firebaseUser.getUid()).setValue(firebaseUser);
                                     startActivity(new Intent(MainActivity.this, ScannerActivity.class));
                                 } else {
                                     Toast.makeText(MainActivity.this, getString(R.string.login_error), Toast.LENGTH_SHORT).show();
