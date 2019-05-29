@@ -3,7 +3,7 @@ package com.example.moneytracker;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Bill implements Parcelable {
+public class BillModel implements Parcelable {
 
     private double price;
     private String payerInfo;
@@ -15,15 +15,12 @@ public class Bill implements Parcelable {
     private String billDescription;
     private int month;
     private boolean billType;
+    private String userId;
 
-    public Bill(double price, String payerInfo, String recipientInfo, String billDescription) {
-        this.price = price;
-        this.payerInfo = payerInfo;
-        this.recipientInfo = recipientInfo;
-        this.billDescription = billDescription;
+    public BillModel() {
     }
 
-    public Bill(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, boolean billType) {
+    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, boolean billType, String userId) {
         this.price = price;
         this.payerInfo = payerInfo;
         this.recipientInfo = recipientInfo;
@@ -33,9 +30,24 @@ public class Bill implements Parcelable {
         this.purposeCode = purposeCode;
         this.billDescription = billDescription;
         this.billType = billType;
+        this.userId = userId;
     }
 
-    protected Bill(Parcel in) {
+    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, int month, boolean billType, String userId) {
+        this.price = price;
+        this.payerInfo = payerInfo;
+        this.recipientInfo = recipientInfo;
+        this.recipientIBAN = recipientIBAN;
+        this.billModel = billModel;
+        this.referenceNumber = referenceNumber;
+        this.purposeCode = purposeCode;
+        this.billDescription = billDescription;
+        this.month = month;
+        this.billType = billType;
+        this.userId = userId;
+    }
+
+    protected BillModel(Parcel in) {
         price = in.readDouble();
         payerInfo = in.readString();
         recipientInfo = in.readString();
@@ -46,17 +58,18 @@ public class Bill implements Parcelable {
         billDescription = in.readString();
         month = in.readInt();
         billType = in.readByte() != 0;
+        userId = in.readString();
     }
 
-    public static final Creator<Bill> CREATOR = new Creator<Bill>() {
+    public static final Creator<BillModel> CREATOR = new Creator<BillModel>() {
         @Override
-        public Bill createFromParcel(Parcel in) {
-            return new Bill(in);
+        public BillModel createFromParcel(Parcel in) {
+            return new BillModel(in);
         }
 
         @Override
-        public Bill[] newArray(int size) {
-            return new Bill[size];
+        public BillModel[] newArray(int size) {
+            return new BillModel[size];
         }
     };
 
@@ -140,6 +153,14 @@ public class Bill implements Parcelable {
         this.billType = billType;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -157,5 +178,6 @@ public class Bill implements Parcelable {
         dest.writeString(billDescription);
         dest.writeInt(month);
         dest.writeByte((byte) (billType ? 1 : 0));
+        dest.writeString(userId);
     }
 }

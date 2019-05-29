@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,8 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
 
-    Button registerButton, loginButton;
-    EditText emailEditText, passwordEditText;
+    private Button registerButton, loginButton;
+    private EditText emailEditText, passwordEditText;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         emailEditText = findViewById(R.id.email_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
 
+        progressBar = findViewById(R.id.pb_loading);
+
         registerButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
 
@@ -52,13 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (checkUserInput()) {
+            progressBar.setVisibility(View.VISIBLE);
+
             if (v.getId() == R.id.register_button) {
                 firebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(MainActivity.this, ScannerActivity.class));
+                                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 } else {
                                     Toast.makeText(MainActivity.this, getString(R.string.registration_error), Toast.LENGTH_SHORT).show();
                                 }
@@ -69,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(MainActivity.this, ScannerActivity.class));
+                                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 } else {
                                     Toast.makeText(MainActivity.this, getString(R.string.login_error), Toast.LENGTH_SHORT).show();
                                 }
@@ -83,15 +91,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean checkUserInput() {
         boolean areInputsValid = true;
         if (emailEditText.getText().toString().isEmpty()) {
-            emailEditText.setError("Obavezno polje");
+            emailEditText.setError(getString(R.string.mandatory_field));
             areInputsValid = false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
-            emailEditText.setError("Pogrešan format e-maila");
+            emailEditText.setError(getString(R.string.wrong_mail));
             areInputsValid = false;
         }
 
         if (passwordEditText.getText().toString().isEmpty()) {
-            passwordEditText.setError("Obavezno polje");
+            passwordEditText.setError(getString(R.string.mandatory_field));
             areInputsValid = false;
         }
         return areInputsValid;

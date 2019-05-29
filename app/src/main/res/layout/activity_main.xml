@@ -39,7 +39,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/colorAccent"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/colorWhite" />
 
     <Button
@@ -49,7 +49,16 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:background="@color/colorAccent"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="@color/colorWhite" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:background="@color/colorWhite"
+        android:progressTint="@color/colorAccent" />
 
 </LinearLayout>

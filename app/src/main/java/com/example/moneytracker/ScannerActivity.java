@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -18,6 +17,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -92,7 +92,6 @@ public class ScannerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //checkPermissions();
     }
 
     private void checkPermissions() {
@@ -119,7 +118,7 @@ public class ScannerActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(this, "You have to grant camera permission to continue", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.grant_permissions, Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -130,7 +129,7 @@ public class ScannerActivity extends AppCompatActivity {
         String payer = values.get(3) + ", " + values.get(4) + ", " + values.get(5);
         String recipient = values.get(6) + ", " + values.get(7) + ", " + values.get(8);
         Double amount = Double.valueOf(values.get(2)) / 100;
-        Bill bill = new Bill(amount, payer, recipient, values.get(9), values.get(10), values.get(11), values.get(12), values.get(13), true);
+        BillModel bill = new BillModel(amount, payer, recipient, values.get(9), values.get(10), values.get(11), values.get(12), values.get(13), true, FirebaseAuth.getInstance().getCurrentUser().getUid());
         Intent intent = new Intent(this, NewBillActivity.class);
         intent.putExtra("bill_object", bill);
         startActivity(intent);

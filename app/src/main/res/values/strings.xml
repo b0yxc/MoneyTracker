@@ -19,4 +19,14 @@
     <string name="scan_bill">Skeniraj račun</string>
     <string name="add_new_bill">Dodaj novi račun</string>
     <string name="show_bill_history">Povijest računa</string>
+    <string name="sign_out">Odjavili ste se</string>
+    <string name="grant_permissions">You have to grant camera permission to continue</string>
+    <string name="new_bill_added">Dodali ste novi račun</string>
+    <string name="mandatory_field">Obavezno polje</string>
+    <string name="wrong_mail">Pogrešan format e-maila</string>
+    <string name="delete_bills">Obriši račune</string>
+    <string name="cancel">Odustani</string>
+    <string name="delete">Obriši</string>
+    <string name="delete_message">Odabirom ove opcije ostat ćete bez svih računa. Jeste li sigurni?</string>
+    <string name="delete_completed">Obrisali ste sve račune</string>
 </resources>
