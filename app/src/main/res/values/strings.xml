@@ -21,7 +21,11 @@
     <string name="show_bill_history">Povijest računa</string>
     <string name="sign_out">Odjavili ste se</string>
     <string name="grant_permissions">You have to grant camera permission to continue</string>
+    <string name="amount">Saldo</string>
+    <string name="number_of_bills">Broj računa</string>
+    <string name="month">Mjesec</string>
     <string name="new_bill_added">Dodali ste novi račun</string>
+    <string name="bill_number_formats">Broj računa: %d</string>
     <string name="mandatory_field">Obavezno polje</string>
     <string name="wrong_mail">Pogrešan format e-maila</string>
     <string name="delete_bills">Obriši račune</string>
@@ -29,4 +33,7 @@
     <string name="delete">Obriši</string>
     <string name="delete_message">Odabirom ove opcije ostat ćete bez svih računa. Jeste li sigurni?</string>
     <string name="delete_completed">Obrisali ste sve račune</string>
+    <string name="main_menu">Glavni izbornik</string>
+    <string name="new_bill">Novi račun</string>
+    <string name="bills">Računi</string>
 </resources>

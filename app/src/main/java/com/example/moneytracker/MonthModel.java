@@ -1,9 +1,12 @@
 package com.example.moneytracker;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonthModel {
+public class MonthModel implements Parcelable {
 
     private double amount;
     private List<BillModel> billList = new ArrayList<>();
@@ -15,6 +18,23 @@ public class MonthModel {
         this.amount = amount;
         this.billList.add(bill);
     }
+
+    protected MonthModel(Parcel in) {
+        amount = in.readDouble();
+        billList = in.createTypedArrayList(BillModel.CREATOR);
+    }
+
+    public static final Creator<MonthModel> CREATOR = new Creator<MonthModel>() {
+        @Override
+        public MonthModel createFromParcel(Parcel in) {
+            return new MonthModel(in);
+        }
+
+        @Override
+        public MonthModel[] newArray(int size) {
+            return new MonthModel[size];
+        }
+    };
 
     public double getAmount() {
         return amount;
@@ -34,5 +54,16 @@ public class MonthModel {
 
     public void setBillList(List<BillModel> billList) {
         this.billList = billList;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(amount);
+        dest.writeTypedList(billList);
     }
 }

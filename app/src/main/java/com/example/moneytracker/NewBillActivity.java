@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
     private Spinner monthSpinner, billTypeSpinner;
     private Button saveBillButton;
     private ProgressBar progressBar;
+    private ImageView backButton;
 
     private boolean dataSaved = false;
 
@@ -75,6 +77,14 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
         billDescriptionEditText = findViewById(R.id.et_bill_description);
         progressBar = findViewById(R.id.pb_loading);
 
+        backButton = findViewById(R.id.iv_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         if (bill != null) {
             priceEditText.setText(String.valueOf(bill.getPrice()));
             payerInfoEditText.setText(bill.getPayerInfo());
@@ -116,7 +126,7 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
                                     recipientInfoEditText.getText().toString(), recipientIBANEditText.getText().toString(),
                                     billModelEditText.getText().toString(), referenceModelEditText.getText().toString(),
                                     purposeCodeEditText.getText().toString(), billDescriptionEditText.getText().toString(),
-                                    month, billType, FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    month, billType, String.valueOf(System.currentTimeMillis() / 1000));
                             monthModel.setBill(billToSave);
                             monthModel.setAmount(monthModel.getAmount() + price);
                             firebaseDatabase.child(String.valueOf(month)).setValue(monthModel);

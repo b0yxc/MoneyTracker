@@ -15,12 +15,12 @@ public class BillModel implements Parcelable {
     private String billDescription;
     private int month;
     private boolean billType;
-    private String userId;
+    private String billId;
 
     public BillModel() {
     }
 
-    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, boolean billType, String userId) {
+    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, boolean billType) {
         this.price = price;
         this.payerInfo = payerInfo;
         this.recipientInfo = recipientInfo;
@@ -30,10 +30,9 @@ public class BillModel implements Parcelable {
         this.purposeCode = purposeCode;
         this.billDescription = billDescription;
         this.billType = billType;
-        this.userId = userId;
     }
 
-    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, int month, boolean billType, String userId) {
+    public BillModel(double price, String payerInfo, String recipientInfo, String recipientIBAN, String billModel, String referenceNumber, String purposeCode, String billDescription, int month, boolean billType, String billId) {
         this.price = price;
         this.payerInfo = payerInfo;
         this.recipientInfo = recipientInfo;
@@ -44,7 +43,7 @@ public class BillModel implements Parcelable {
         this.billDescription = billDescription;
         this.month = month;
         this.billType = billType;
-        this.userId = userId;
+        this.billId = billId;
     }
 
     protected BillModel(Parcel in) {
@@ -58,7 +57,7 @@ public class BillModel implements Parcelable {
         billDescription = in.readString();
         month = in.readInt();
         billType = in.readByte() != 0;
-        userId = in.readString();
+        billId = in.readString();
     }
 
     public static final Creator<BillModel> CREATOR = new Creator<BillModel>() {
@@ -153,12 +152,12 @@ public class BillModel implements Parcelable {
         this.billType = billType;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getBillId() {
+        return billId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setBillId(String billId) {
+        this.billId = billId;
     }
 
     @Override
@@ -178,6 +177,6 @@ public class BillModel implements Parcelable {
         dest.writeString(billDescription);
         dest.writeInt(month);
         dest.writeByte((byte) (billType ? 1 : 0));
-        dest.writeString(userId);
+        dest.writeString(billId);
     }
 }

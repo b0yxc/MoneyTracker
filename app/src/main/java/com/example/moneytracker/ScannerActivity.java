@@ -129,7 +129,7 @@ public class ScannerActivity extends AppCompatActivity {
         String payer = values.get(3) + ", " + values.get(4) + ", " + values.get(5);
         String recipient = values.get(6) + ", " + values.get(7) + ", " + values.get(8);
         Double amount = Double.valueOf(values.get(2)) / 100;
-        BillModel bill = new BillModel(amount, payer, recipient, values.get(9), values.get(10), values.get(11), values.get(12), values.get(13), true, FirebaseAuth.getInstance().getCurrentUser().getUid());
+        BillModel bill = new BillModel(amount, payer, recipient, values.get(9), values.get(10), values.get(11), values.get(12), values.get(13), true);
         Intent intent = new Intent(this, NewBillActivity.class);
         intent.putExtra("bill_object", bill);
         startActivity(intent);

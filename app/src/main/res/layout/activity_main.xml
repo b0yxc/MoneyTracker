@@ -38,7 +38,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/rounded_button"
         android:text="@string/login"
         android:textColor="@color/colorWhite" />
 
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/rounded_button"
         android:text="@string/register"
         android:textColor="@color/colorWhite" />
 

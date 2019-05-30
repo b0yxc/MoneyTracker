@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, NewBillActivity.class));
                 break;
             case R.id.see_bill_list_button:
+                startActivity(new Intent(this, MonthListActivity.class));
                 break;
             case R.id.delete_db_button:
                 AlertDialog dialog = new AlertDialog.Builder(this)
@@ -87,7 +88,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.logout_button:
                 firebaseAuth.signOut();
                 Toast.makeText(this, R.string.sign_out, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
         }
     }
